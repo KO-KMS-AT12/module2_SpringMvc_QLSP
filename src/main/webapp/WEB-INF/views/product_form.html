@@ -8,6 +8,9 @@
 <form th:action="@{/product/save}" th:object="${productFrom}" method="post" enctype="multipart/form-data">
   <table>
     <tr>
+      <td><input type="hidden" th:field="*{id}"/></td>
+    </tr>
+    <tr>
       <td>Name:</td>
       <td><input type="text" th:field="*{name}"/></td>
     </tr>

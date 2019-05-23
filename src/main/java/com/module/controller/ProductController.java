@@ -60,29 +60,31 @@ public class ProductController {
   }
 
   @RequestMapping(value = "/save", method = RequestMethod.POST)
-  public ModelAndView list(@ModelAttribute("productFrom") ProductForm productform) {
+  public ModelAndView list(@ModelAttribute("productFrom") ProductForm productFrom) {
     // lay ten file
-    MultipartFile multipartFile = productform.getImage();
+    MultipartFile multipartFile = productFrom.getImage();
     String fileName = multipartFile.getOriginalFilename();
 
     // luu file len server
+    File uploadedFile = new File(UPLOAD_LOCATION + fileName);
     try {
-      FileCopyUtils.copy(productform.getImage().getBytes(), new File(UPLOAD_LOCATION + fileName));
+
+      FileCopyUtils.copy(productFrom.getImage().getBytes(), uploadedFile);
     } catch (IOException ex) {
       ex.printStackTrace();
     }
 
 //     tao doi tuong de luu vao db
-    Product product = new Product(productform.getId(), productform.getName(),productform.getDescription(),productform.getQuantity(), productform.getPrice(), fileName);
+    Product product = new Product(productFrom.getId(), productFrom.getName(),productFrom.getDescription(),productFrom.getQuantity(), productFrom.getPrice(), uploadedFile.getAbsolutePath() );
 
 //     luu vao db
-    productService.addProduct(product);
+    // productService.addProduct(product);
 
-//    if (productform != null && productform.getId() != null) {
-//      productService.updateProduct(productform);
-//    } else {
-//      productService.addProduct(productform);
-//    }
+    if (productFrom != null && productFrom.getId() != null) {
+      productService.updateProduct(product);
+    } else {
+      productService.addProduct(product);
+    }
 
     return new ModelAndView("redirect:/product/list");
   }

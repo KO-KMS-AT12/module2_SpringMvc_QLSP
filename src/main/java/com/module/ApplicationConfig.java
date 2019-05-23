@@ -59,7 +59,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    registry.addResourceHandler("/resources/**").addResourceLocations("file:/home/ko/code/SpringMVC/CRUDSpingMVC/src/main/webapp/WEB-INF/image/");
   }
 
   //Thymeleaf Configuration
