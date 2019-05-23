@@ -35,6 +35,13 @@ public class ProductController {
     return model;
   }
 
+  @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+  public ModelAndView deleteProduct(@PathVariable("id") Integer id) {
+    productService.deleteProduct(id);
+
+    return new ModelAndView("redirect:/product/list");
+  }
+
   @RequestMapping(value = "/add", method = RequestMethod.GET)
   public ModelAndView addProduct() {
     ModelAndView model = new ModelAndView("/product_form");
@@ -77,13 +84,6 @@ public class ProductController {
 //    } else {
 //      productService.addProduct(productform);
 //    }
-
-    return new ModelAndView("redirect:/product/list");
-  }
-
-  @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-  public ModelAndView deleteProduct(@PathVariable("id") Integer id) {
-    productService.deleteProduct(id);
 
     return new ModelAndView("redirect:/product/list");
   }
