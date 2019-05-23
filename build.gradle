@@ -30,6 +30,10 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.17.RELEASE'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.17.RELEASE'
     
-    //thymeleaf (html)
+    //thymeleaf
     compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.9.RELEASE'
+
+    //upload file
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.3'
+
 }

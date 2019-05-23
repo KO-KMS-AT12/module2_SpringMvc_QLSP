@@ -1,15 +1,16 @@
 package com.module.model;
 
-public class Product {
+import org.springframework.web.multipart.MultipartFile;
 
+public class ProductForm {
   private Integer id;
   private String name;
   private String description;
   private Integer quantity;
   private Double price;
-  private String image;
+  private MultipartFile image;
 
-  public Product(Integer id, String name, String description, Integer quantity, Double price, String image) {
+  public ProductForm(Integer id, String name, String description, Integer quantity, Double price, MultipartFile image) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -18,11 +19,11 @@ public class Product {
     this.image = image;
   }
 
-  public Product() {
+  public ProductForm() {
 
   }
 
-  public Product(Integer id) {
+  public ProductForm(Integer id) {
     super();
     this.id = id;
   }
@@ -67,11 +68,11 @@ public class Product {
     this.price = price;
   }
 
-  public String getImage() {
+  public MultipartFile getImage() {
     return image;
   }
 
-  public void setImage(String image) {
+  public void setImage(MultipartFile image) {
     this.image = image;
   }
 }

@@ -1,6 +1,5 @@
 package com.module.repository;
 
-import com.module.connect.DBConnect;
 import com.module.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -10,8 +9,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -47,6 +44,7 @@ public class ProductRepositoryImpl implements ProductRepository {
       parameterSource.addValue("description", product.getDescription());
       parameterSource.addValue("quantity", product.getQuantity());
       parameterSource.addValue("price", product.getPrice());
+      parameterSource.addValue("image", product.getImage());
     }
 
     return parameterSource;
@@ -62,6 +60,7 @@ public class ProductRepositoryImpl implements ProductRepository {
       product.setDescription(rs.getString("description"));
       product.setQuantity(rs.getInt("quantity"));
       product.setPrice(rs.getDouble("price"));
+      product.setImage(rs.getString("image"));
 
       return product;
     }
@@ -70,7 +69,7 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Override
   public void addProduct(Product product) {
     String sql =
-        "INSERT INTO products(name,description,quantity,price) VALUES (:name,:description,:quantity,:price)";
+        "INSERT INTO products(name,description,quantity,price,image) VALUES (:name,:description,:quantity,:price,:image)";
 
     namedParameterJdbcTemplate.update(sql, getSqlParameterByModel(product));
   }
@@ -78,7 +77,7 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Override
   public void updateProduct(Product product) {
     String sql =
-        "UPDATE products SET name = :name,description=:description,quantity=:quantity,price=:price WHERE id=:id";
+        "UPDATE products SET name = :name,description=:description,quantity=:quantity,price=:price,image=:image WHERE id=:id";
 
     namedParameterJdbcTemplate.update(sql, getSqlParameterByModel(product));
   }
