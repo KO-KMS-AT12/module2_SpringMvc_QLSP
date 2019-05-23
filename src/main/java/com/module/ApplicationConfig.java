@@ -23,10 +23,7 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-
 import javax.sql.DataSource;
-
-import java.io.IOException;
 
 import static com.module.common.Constant.*;
 
